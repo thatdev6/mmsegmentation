@@ -10,19 +10,19 @@ from .custom import CustomDataset
 
 
 @DATASETS.register_module()
-class LoveDADataset(CustomDataset):
-    """LoveDA dataset.
+class CrackDataset(CustomDataset):
+    """Crack dataset.
 
-    In segmentation map annotation for LoveDA, 0 is the ignore index.
+    In segmentation map annotation for Crack, 0 is the ignore index.
     ``reduce_zero_label`` should be set to True. The ``img_suffix`` and
     ``seg_map_suffix`` are both fixed to '.png'.
     """
-    CLASSES = ('background', 'corrosion', 'oxidation', 'rust')
+    CLASSES = ('background', 'crack1', 'crack2', 'crack3')
 
-    PALETTE = [[0,0,0], [184,61,245], [36,179,83], [250,50,83]]
+    PALETTE = [[0,0,0], [250,50,83], [160,107,87], [184,61,245]]
 
     def __init__(self, **kwargs):
-        super(LoveDADataset, self).__init__(
+        super(CrackDataset, self).__init__(
             img_suffix='.jpg',
             seg_map_suffix='.png',
             reduce_zero_label=False,
@@ -63,7 +63,7 @@ class LoveDADataset(CustomDataset):
         return result_files
 
     def format_results(self, results, imgfile_prefix, indices=None):
-        """Format the results into dir (standard format for LoveDA evaluation).
+        """Format the results into dir (standard format for Crack evaluation).
 
         Args:
             results (list): Testing results of the dataset.

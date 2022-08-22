@@ -1,3 +1,4 @@
+# edit
 # Copyright (c) OpenMMLab. All rights reserved.
 import mmcv
 
@@ -90,8 +91,21 @@ def cocostuff_classes():
 def loveda_classes():
     """LoveDA class names for external use."""
     return [
-        'background', 'building', 'road', 'water', 'barren', 'forest',
-        'agricultural'
+        'background', 'corrosion', 'oxidation', 'rust'
+    ]
+
+
+def rust_classes():
+    """rust class names for external use."""
+    return [
+        'background', 'corrosion', 'oxidation', 'rust'
+    ]
+
+
+def crack_classes():
+    """crack class names for external use."""
+    return [
+        'background', 'crack1', 'crack2', 'crack3'
     ]
 
 
@@ -235,8 +249,17 @@ def cocostuff_palette():
 
 def loveda_palette():
     """LoveDA palette for external use."""
-    return [[255, 255, 255], [255, 0, 0], [255, 255, 0], [0, 0, 255],
-            [159, 129, 183], [0, 255, 0], [255, 195, 128]]
+    return [[0,0,0], [184,61,245], [36,179,83], [250,50,83]]
+
+
+def rust_palette():
+    """rust palette for external use."""
+    return [[0,0,0], [184,61,245], [36,179,83], [250,50,83]]
+
+
+def crack_palette():
+    """crack palette for external use."""
+    return [[0,0,0], [250,50,83], [160,107,87], [184,61,245]]
 
 
 def potsdam_palette():
@@ -270,6 +293,8 @@ dataset_aliases = {
     'ade': ['ade', 'ade20k'],
     'voc': ['voc', 'pascal_voc', 'voc12', 'voc12aug'],
     'loveda': ['loveda'],
+    'rust': ['rust'],
+    'crack': ['crack'],
     'potsdam': ['potsdam'],
     'vaihingen': ['vaihingen'],
     'cocostuff': [

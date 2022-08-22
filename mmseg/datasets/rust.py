@@ -10,10 +10,10 @@ from .custom import CustomDataset
 
 
 @DATASETS.register_module()
-class LoveDADataset(CustomDataset):
-    """LoveDA dataset.
+class RustDataset(CustomDataset):
+    """Rust dataset.
 
-    In segmentation map annotation for LoveDA, 0 is the ignore index.
+    In segmentation map annotation for Rust, 0 is the ignore index.
     ``reduce_zero_label`` should be set to True. The ``img_suffix`` and
     ``seg_map_suffix`` are both fixed to '.png'.
     """
@@ -22,7 +22,7 @@ class LoveDADataset(CustomDataset):
     PALETTE = [[0,0,0], [184,61,245], [36,179,83], [250,50,83]]
 
     def __init__(self, **kwargs):
-        super(LoveDADataset, self).__init__(
+        super(RustDataset, self).__init__(
             img_suffix='.jpg',
             seg_map_suffix='.png',
             reduce_zero_label=False,
@@ -63,7 +63,7 @@ class LoveDADataset(CustomDataset):
         return result_files
 
     def format_results(self, results, imgfile_prefix, indices=None):
-        """Format the results into dir (standard format for LoveDA evaluation).
+        """Format the results into dir (standard format for Rust evaluation).
 
         Args:
             results (list): Testing results of the dataset.
