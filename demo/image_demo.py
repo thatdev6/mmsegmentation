@@ -18,7 +18,7 @@ def main():
     parser.add_argument('img', help='Image file/folder path')
     parser.add_argument('config', help='Config file')
     parser.add_argument('checkpoint', help='Checkpoint file')
-    parser.add_argument('--out-file', default=None, help='Path to output file/folder')
+    parser.add_argument('--out-file', default=None, help='Path to output folder')
     parser.add_argument(
         '--device', default='cuda:0', help='Device used for inference')
     parser.add_argument(
@@ -32,21 +32,20 @@ def main():
         help='Opacity of painted segmentation map. In (0, 1] range.')
     args = parser.parse_args()
 
+    # make output folder
+    if not args.out_file:
+        out_dir = 'results'
+    elif os.path.splitext(args.out_file)[1] == '':
+        out_dir = args.out_file
+    else:
+        raise Exception('Sorry, output must be a folder')
+    os.makedirs(out_dir, exist_ok=True)
+
     # check if the input from a single image file or from a folder
     img_exts = ['.jpg', '.JPG', '.jpeg', '.png']
-    if os.path.isdir(args.img):
-        if not args.out_file:
-            out_dir = 'result'
-        elif os.path.splitext(args.out_file)[1] == '':
-            out_dir = args.out_file
-        else:
-            raise Exception('Sorry, output must be a folder')
-        os.makedirs(out_dir, exist_ok=True)
+    if  os.path.isdir(args.img):
         imgs_path = [img_path for img_path in glob.glob(f'{args.img}/**/*.*', recursive=True) if ext(img_path) in img_exts]
     elif os.path.isfile(args.img):
-        if os.path.splitext(args.out_file)[1] == '':
-            raise Exception('Sorry, output must be a file')
-        out_dir = ''
         imgs_path = [args.img]
     else:
         raise Exception('Sorry, input must be an image file or a folder')
