@@ -4,15 +4,15 @@ from genericpath import isfile
 import os
 import glob
 
-from mmseg.apis import inference_segmentor, init_segmentor, show_result_pyplot
-from mmseg.core.evaluation import get_palette
-
 
 def ext(path):
     return os.path.splitext(path)[1]
 
 
 def predict(config, checkpoint, img, out_file=None, device='cuda:0', palette='rust', opacity=0.5):
+    from mmseg.apis import inference_segmentor, init_segmentor, show_result_pyplot
+    from mmseg.core.evaluation import get_palette
+    
     # make output folder
     if not out_file:
         out_dir = 'results'
