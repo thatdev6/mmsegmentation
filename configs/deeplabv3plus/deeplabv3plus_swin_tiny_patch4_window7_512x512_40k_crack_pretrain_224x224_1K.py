@@ -8,8 +8,8 @@ checkpoint_file = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/s
 model = dict(
     backbone=dict(
         init_cfg=dict(type='Pretrained', checkpoint=checkpoint_file)),
-    decode_head=dict(num_classes=4),
-    auxiliary_head=dict(num_classes=4))
+    decode_head=dict(num_classes=2),
+    auxiliary_head=dict(num_classes=2))
 
 # AdamW optimizer, no weight decay for position embedding & layer norm
 # in backbone
